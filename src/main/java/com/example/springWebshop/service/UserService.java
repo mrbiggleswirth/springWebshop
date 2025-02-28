@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.springWebshop.repository.UserRepository;
 import com.example.springWebshop.model.User;
+import com.example.springWebshop.repository.UserRepository;
 
 // _____________________________________________________________________________
 
@@ -20,6 +20,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+// _____________________________________________________________________________
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -29,5 +31,9 @@ public class UserService {
          * Fetches user by ID or returns null.
          */
         return userRepository.findById(id).orElse(null);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

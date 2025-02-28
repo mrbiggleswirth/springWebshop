@@ -9,52 +9,53 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
 
+    // 1
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 1
+    // 2
     @Column(unique = true, nullable = false, length = 50)
     private String username;
 
-    // 2
+    // 3
     @Column(unique = true, nullable = false, length = 100)
     private String email;
 
-    // 3
+    // 4
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    // 4
+    // 5
     @Column(name = "first_name", length = 100)
     private String firstName;
 
-    // 5
+    // 6
     @Column(name = "last_name", length = 100)
     private String lastName;
 
-    // 6
+    // 7
     @Column(length = 255)
     private String address;
 
-    // 7
+    // 8
     @Column(length = 20)
     private String phone;
 
-    // 8
+    // 9
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    // 9
+    // 10
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    // 10
+    // 11
     @Column(name = "is_active")
     private boolean isActive;
 
 // _____________________________________________________________________________
-// Default constructor
+// Explicit no-arg constructor
 
     public User() {
         /**
@@ -68,101 +69,106 @@ public class User {
 // Getters & Setters
 
     // 1
+    public Long getId() {
+        return id;
+    }
+
+    // 2
     public String getUsername() {
         return username;
     }
 
-    // 1
+    // 2
     public void setUsername(String username) {
         this.username = username;
     }
 
-    // 2
+    // 3
     public String getEmail() {
         return email;
     }
 
-    // 2
+    // 3
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // 3
+    // 4
     public String getPasswordHash() {
         return passwordHash;
     }
 
-    // 3
+    // 4
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
 
-    // 4
+    // 5
     public String getFirstName() {
         return firstName;
     }
 
-    // 4
+    // 5
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    // 5
+    // 6
     public String getLastName() {
         return lastName;
     }
 
-    // 5
+    // 6
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    // 6
+    // 7
     public String getAddress() {
         return address;
     }
 
-    // 6
+    // 7
     public void setAddress(String address) {
         this.address = address;
     }
 
-    // 7
+    // 8
     public String getPhone() {
         return phone;
     }
 
-    // 7
+    // 8
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    // 8
+    // 9
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    // 8
+    // 9
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    // 9
+    // 10
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    // 9
+    // 10
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    // 10
+    // 11
     public boolean isActive() {
         return isActive;
     }
 
-    // 10
+    // 11
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
