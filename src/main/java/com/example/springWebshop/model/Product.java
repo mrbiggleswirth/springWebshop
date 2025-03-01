@@ -41,10 +41,14 @@ public class Product {
     @Column(name = "price", precision = 10, scale = 2, nullable = false)
     private BigDecimal price;
 
-    // 5
+// _____________________________________________________________________________
+
+    // 5: Product belongs to a single category.
     @ManyToOne
     @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_product_category"), nullable = true)
     private Category category;
+
+// _____________________________________________________________________________
 
     // 6
     @Column(name = "image_url", length = 255)
@@ -65,10 +69,6 @@ public class Product {
     // 10
     @Column(name = "updated_at")
     private  LocalDateTime updatedAt;
-
-// _____________________________________________________________________________
-// Relationships
-
 
 // _____________________________________________________________________________
 // Explicit no-arg constructor
