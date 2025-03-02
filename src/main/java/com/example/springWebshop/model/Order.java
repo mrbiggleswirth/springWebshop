@@ -46,9 +46,17 @@ public class Order {
             columnDefinition = "DECIMAL(10,2) DEFAULT 0.00")
     private BigDecimal shippingCost;
 
+    /**
+     *
+     * TODO: Don't forget that missing SPACE causes MySQL error!!
+     *
+     * columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP" +
+     *                    "ON UPDATE CURRENT_TIMESTAMP")
+     */
+
     // 8
     @Column(name = "updated_at",
-            columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP" +
+            columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP " +
                                "ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 
