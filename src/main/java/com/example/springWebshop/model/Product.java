@@ -41,25 +41,24 @@ public class Product {
     @Column(name = "price", precision = 10, scale = 2, nullable = false)
     private BigDecimal price;
 
-// _____________________________________________________________________________
-
     // 5: Product belongs to a single category.
     @ManyToOne
-    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_product_category"), nullable = true)
+    @JoinColumn(name = "category_id", nullable = true,
+                foreignKey = @ForeignKey(name = "fk_product_category"))
     private Category category;
-
-// _____________________________________________________________________________
 
     // 6
     @Column(name = "image_url", length = 255)
     private String imageUrl;
 
     // 7
-    @Column(name = "stock_quantity", nullable = false, columnDefinition = "INT DEFAULT 0")
+    @Column(name = "stock_quantity", nullable = false,
+            columnDefinition = "INT DEFAULT 0")
     private Integer stockQuantity = 0;
 
     // 8
-    @Column(name = "is_available", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    @Column(name = "is_available", nullable = false,
+            columnDefinition = "BOOLEAN DEFAULT TRUE")
     private Boolean isAvailable = true;
 
     // 9
