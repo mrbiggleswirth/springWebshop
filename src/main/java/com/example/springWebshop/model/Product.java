@@ -41,7 +41,9 @@ public class Product {
     @Column(name = "price", precision = 10, scale = 2, nullable = false)
     private BigDecimal price;
 
-    // 5: Product belongs to a single category.
+    /**
+     * 5: Product belongs to a single category.
+     */
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = true,
                 foreignKey = @ForeignKey(name = "fk_product_category"))
@@ -167,5 +169,9 @@ public class Product {
     // 10
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

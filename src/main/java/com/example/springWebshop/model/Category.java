@@ -27,16 +27,22 @@ public class Category {
 
 // _____________________________________________________________________________
 
-    // 4-A1: Parent category (self-referencing relationship).
+    /**
+     * 4-A1: Parent category (self-referencing relationship).
+     */
     @ManyToOne
     @JoinColumn(name = "parent_id", foreignKey = @ForeignKey(name = "fk_category_parent"))
     private Category parent;
 
-    // 4-A2: Subcategories for a category (self-referencing relationship).
+    /**
+     * 4-A2: Subcategories for a category (self-referencing relationship).
+     */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Category> subcategories = new ArrayList<>();
 
-    // 4-B: Products belonging to this category.
+    /**
+     * 4-B: Products belonging to this category.
+     */
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
@@ -95,6 +101,8 @@ public class Category {
         this.description = description;
     }
 
+// _____________________________________________________________________________
+
     /**
      * 4-A1: Parent category (self-referencing relationship).
      */
@@ -117,6 +125,19 @@ public class Category {
         this.subcategories = subcategories;
     }
 
+    /**
+     * 4-B: Products belonging to this category.
+     */
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+// _____________________________________________________________________________
+
     // 5
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -125,5 +146,9 @@ public class Category {
     // 6
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
