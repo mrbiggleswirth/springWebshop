@@ -37,7 +37,7 @@ public class Inventory {
     private String warehouseLocation;
 
 // _____________________________________________________________________________
-// Explicit no-arg constructor
+// Explicit no-arg constructor.
 
     public Inventory() {}
 
@@ -63,7 +63,6 @@ public class Inventory {
         return product;
     }
 
-    // 2
     public void setProduct(Product product) {
         this.product = product;
     }
@@ -73,7 +72,6 @@ public class Inventory {
         return quantity;
     }
 
-    // 3
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
@@ -83,7 +81,6 @@ public class Inventory {
         return lastUpdated;
     }
 
-    // 4
     public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
@@ -93,7 +90,6 @@ public class Inventory {
         return warehouseLocation;
     }
 
-    // 5
     public void setWarehouseLocation(String warehouseLocation) {
         this.warehouseLocation = warehouseLocation;
     }

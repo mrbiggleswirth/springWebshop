@@ -51,7 +51,7 @@ public class Category {
     private LocalDateTime updatedAt;
 
 // _____________________________________________________________________________
-// Explicit no-arg constructor
+// Explicit no-arg constructor.
 
     public Category() {}
 
@@ -82,7 +82,6 @@ public class Category {
         return name;
     }
 
-    // 2
     public void setName(String name) {
         this.name = name;
     }
@@ -92,27 +91,28 @@ public class Category {
         return description;
     }
 
-    // 3
     public void setDescription(String description) {
         this.description = description;
     }
 
-    // 4
+    /**
+     * 4-A1: Parent category (self-referencing relationship).
+     */
     public Category getParent() {
         return parent;
     }
 
-    // 4
     public void setParent(Category parent) {
         this.parent = parent;
     }
 
-    // 4
+    /**
+     * 4-A2: Subcategories for a category (self-referencing relationship).
+     */
     public List<Category> getSubcategories() {
         return subcategories;
     }
 
-    // 4
     public void setSubcategories(List<Category> subcategories) {
         this.subcategories = subcategories;
     }

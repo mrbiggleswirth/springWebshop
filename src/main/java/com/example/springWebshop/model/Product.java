@@ -70,7 +70,7 @@ public class Product {
     private  LocalDateTime updatedAt;
 
 // _____________________________________________________________________________
-// Explicit no-arg constructor
+// Explicit no-arg constructor.
 
     public Product() {}
 
@@ -101,7 +101,6 @@ public class Product {
         return name;
     }
 
-    // 2
     public void setName(String name) {
         this.name = name;
     }
@@ -111,7 +110,6 @@ public class Product {
         return description;
     }
 
-    // 3
     public void setDescription(String description) {
         this.description = description;
     }
@@ -121,7 +119,6 @@ public class Product {
         return price;
     }
 
-    // 4
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
@@ -131,7 +128,6 @@ public class Product {
         return category;
     }
 
-    // 5
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -141,7 +137,6 @@ public class Product {
         return imageUrl;
     }
 
-    // 6
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -151,7 +146,6 @@ public class Product {
         return stockQuantity;
     }
 
-    // 7
     public void setStockQuantity(Integer stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
@@ -161,7 +155,6 @@ public class Product {
         return isAvailable;
     }
 
-    // 8
     public void setAvailable(Boolean available) {
         isAvailable = available;
     }

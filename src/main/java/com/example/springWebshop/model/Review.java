@@ -44,7 +44,7 @@ public class Review {
     private boolean isApproved;
 
 // _____________________________________________________________________________
-// Explicit no-arg constructor
+// Explicit no-arg constructor.
 
     public Review() {}
 
@@ -69,7 +69,6 @@ public class Review {
         return product;
     }
 
-    // 2
     public void setProduct(Product product) {
         this.product = product;
     }
@@ -79,7 +78,6 @@ public class Review {
         return user;
     }
 
-    // 3
     public void setUser(User user) {
         this.user = user;
     }
@@ -89,7 +87,6 @@ public class Review {
         return rating;
     }
 
-    // 4
     public void setRating(int rating) {
         this.rating = rating;
     }
@@ -99,7 +96,6 @@ public class Review {
         return comment;
     }
 
-    // 5
     public void setComment(String comment) {
         this.comment = comment;
     }
@@ -114,7 +110,6 @@ public class Review {
         return isApproved;
     }
 
-    // 7
     public void setApproved(boolean isApproved) {
         this.isApproved = isApproved;
     }

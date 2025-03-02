@@ -55,7 +55,7 @@ public class User {
     private boolean isActive;
 
 // _____________________________________________________________________________
-// Explicit no-arg constructor
+// Explicit no-arg constructor.
 
     public User() {
         /**
@@ -78,7 +78,6 @@ public class User {
         return username;
     }
 
-    // 2
     public void setUsername(String username) {
         this.username = username;
     }
@@ -88,7 +87,6 @@ public class User {
         return email;
     }
 
-    // 3
     public void setEmail(String email) {
         this.email = email;
     }
@@ -98,7 +96,6 @@ public class User {
         return passwordHash;
     }
 
-    // 4
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
@@ -108,7 +105,6 @@ public class User {
         return firstName;
     }
 
-    // 5
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -118,7 +114,6 @@ public class User {
         return lastName;
     }
 
-    // 6
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -128,7 +123,6 @@ public class User {
         return address;
     }
 
-    // 7
     public void setAddress(String address) {
         this.address = address;
     }
@@ -138,7 +132,6 @@ public class User {
         return phone;
     }
 
-    // 8
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -148,7 +141,6 @@ public class User {
         return createdAt;
     }
 
-    // 9
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
@@ -158,7 +150,6 @@ public class User {
         return updatedAt;
     }
 
-    // 10
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
@@ -168,7 +159,6 @@ public class User {
         return isActive;
     }
 
-    // 11
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
