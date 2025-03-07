@@ -8,4 +8,4 @@
 ![Alt text ](https://raw.githubusercontent.com/mrbiggleswirth/springWebshop/master/ERD/springWebshop-2.1-claude.png)
 
 ## Notes
-Some notes here.
+Some notes here. Testing local push to GitHub after "$ git pull origin master" command.
