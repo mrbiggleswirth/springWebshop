@@ -1,7 +1,7 @@
 # Spring Webshop
 
 ## Table of Contents
-- [ERD diagram](#erd diagram)
+- [ERD diagram](#erd-diagram)
 - [Notes](#notes)
 
 ## ERD diagram
