@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringWebshopApp {
+public class SpringWebshopApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringWebshopApp.class, args);
+		SpringApplication.run(SpringWebshopApplication.class, args);
 	}
 }
