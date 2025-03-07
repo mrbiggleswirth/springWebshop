@@ -32,10 +32,13 @@
 
 	<!-- Start Dependencies -->
 	<dependencies>
+		<!--
+		ChatGPT says that "spring-boot-starter-web" already brings the necessary components.
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

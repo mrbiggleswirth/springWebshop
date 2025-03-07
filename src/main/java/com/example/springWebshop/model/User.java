@@ -1,6 +1,8 @@
 package com.example.springWebshop.model;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 
 // _____________________________________________________________________________
@@ -50,9 +52,15 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    /**
+     * Using 'Boolean' wrapper class instead of
+     * primitive type 'boolean' because boolean can't be NULL.
+     */
+
     // 11
-    @Column(name = "is_active")
-    private boolean isActive;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = false;
+    // private boolean isActive;
 
 // _____________________________________________________________________________
 // Explicit no-arg constructor.
