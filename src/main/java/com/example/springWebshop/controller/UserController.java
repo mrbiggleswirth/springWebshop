@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springWebshop.model.User;
@@ -34,5 +35,11 @@ public class UserController {
     @GetMapping("/user/{id}")
     public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+
+    // Get a user by email.
+    @GetMapping("/user/email")
+    public User getUserByEmail(@RequestParam String email) {
+        return userService.getUserByEmail(email);
     }
 }

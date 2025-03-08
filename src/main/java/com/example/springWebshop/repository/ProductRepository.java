@@ -1,10 +1,11 @@
 package com.example.springWebshop.repository;
 
-import com.example.springWebshop.model.Product;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.example.springWebshop.model.Product;
 
 // _____________________________________________________________________________
 
@@ -16,6 +17,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      *   - findAll()
      */
 
-    // Custom method generating query based on naming convention.
-    List<Product> findByName(String name);
+
+    /**
+     * Find products by name starting with the given string.
+     */
+    // List<Product> findByNameStartingWith(String name);
+    // List<Product> findByNameIgnoreCase(String name);
+    // List<Product> findByNameIgnoreCaseContaining(String name);
+    List<Product> findByNameIgnoreCaseStartingWith(String name);
+
+    /**
+     * This generic naming might be causing server errors!
+     */
+    // List<Product> findByNameStartingWithAndFilters(String name, String manufacturer);
 }

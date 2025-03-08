@@ -37,7 +37,32 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public List<Product> getProductsByName(String name) {
-        return productRepository.findByName(name);
+// _____________________________________________________________________________
+// Search
+
+    public List<Product> getProductsByNameIgnoreCaseStartingWith(String name) {
+        System.out.println("Searching for products with name: " + name);
+        return productRepository.findByNameIgnoreCaseStartingWith(name);
     }
+
+    /*
+    public List<Product> getProductsByNameAndFilters(
+        String name,
+        String manufacturer
+    ) {
+        if (manufacturer != null) {
+            System.out.println("Searching for products with name: " + name
+                + " and manufacturer: " + manufacturer
+            );
+            return productRepository.findByNameStartingWithAndFilters(
+                name,
+                manufacturer
+            );
+        } else {
+            System.out.println("Searching for products with name: " + name);
+            return productRepository.findByNameIgnoreCaseStartingWith(name);
+        }
+    }
+    */
+
 }

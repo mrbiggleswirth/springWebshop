@@ -3,6 +3,8 @@ package com.example.springWebshop.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 // _____________________________________________________________________________
@@ -22,6 +24,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "products")
+@JsonIgnoreProperties({"category"})
 public class Product {
 
     // 1
@@ -47,6 +50,10 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = true,
                 foreignKey = @ForeignKey(name = "fk_product_category"))
+    /**
+     * @JsonManagedReference // This ensures proper serialization in the Product class.
+     * Might be needed again later when working with DTOs!
+     */
     private Category category;
 
     // 6

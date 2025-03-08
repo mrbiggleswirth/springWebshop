@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springWebshop.model.Product;
@@ -22,6 +23,8 @@ public class ProductController {
         this.productService = productService;
     }
 
+// _____________________________________________________________________________
+
     // Get all products.
     @GetMapping("/products")
     public List<Product> getAllProducts() {
@@ -30,7 +33,33 @@ public class ProductController {
 
     // Get a product by ID.
     @GetMapping("/product/{id}")
-    public Product getUserById(@PathVariable Long id) {
+    public Product getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
+
+    // Get a products by name.
+    @GetMapping("/products/name/{name}")
+    public List<Product> getProductsByNameIgnoreCaseStartingWith(@PathVariable String name) {
+        return productService.getProductsByNameIgnoreCaseStartingWith(name);
+    }
+
+    /**
+     * TODO: Optional manufacturer, not yet implemented.
+     */
+
+    /*
+    // Get a products by name.
+    @GetMapping("/products/name")
+    public List<Product> getProductsByNameAndFilters(
+        @RequestParam String name,
+        @RequestParam(required = false) String manufacturer
+    ) {
+        // return productService.getProductsByNameIgnoreCaseStartingWith(name);
+        return productService.getProductsByNameAndFilters(
+            name,
+            manufacturer
+        );
+    }
+    */
+
 }

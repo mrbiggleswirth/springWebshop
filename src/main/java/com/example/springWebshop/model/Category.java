@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 // _____________________________________________________________________________
@@ -32,12 +34,14 @@ public class Category {
      */
     @ManyToOne
     @JoinColumn(name = "parent_id", foreignKey = @ForeignKey(name = "fk_category_parent"))
+    @JsonBackReference // Ignore this field during JSON serialization to prevent recursion.
     private Category parent;
 
     /**
      * 4-A2: Subcategories for a category (self-referencing relationship).
      */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Serialize this field.
     private List<Category> subcategories = new ArrayList<>();
 
     /**
