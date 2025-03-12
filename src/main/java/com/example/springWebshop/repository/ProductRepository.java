@@ -1,6 +1,7 @@
 package com.example.springWebshop.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -30,4 +31,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * This generic naming might be causing server errors!
      */
     // List<Product> findByNameStartingWithAndFilters(String name, String manufacturer);
+
+// _____________________________________________________________________________
+// For testing
+
+    Optional<Product> findByName(String name);
 }

@@ -1,6 +1,7 @@
 package com.example.springWebshop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,12 @@ public class ProductService {
         System.out.println("Searching for products with name: " + name);
         return productRepository.findByNameIgnoreCaseStartingWith(name);
     }
+
+    // For testing only?
+    public Optional<Product> findProductByName(String name) {
+        return productRepository.findByName(name);
+    }
+
 
     /*
     public List<Product> getProductsByNameAndFilters(
