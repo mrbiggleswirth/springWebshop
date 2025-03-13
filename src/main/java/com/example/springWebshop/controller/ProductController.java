@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.springWebshop.dto.ProductDto;
 import com.example.springWebshop.model.Product;
 import com.example.springWebshop.service.ProductService;
 
@@ -25,11 +26,24 @@ public class ProductController {
 
 // _____________________________________________________________________________
 
+    /*
     // Get all products.
     @GetMapping("/products")
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
+     */
+
+    /**
+     * TODO: Complete building the getAllProducts() method using DTO code.
+     */
+
+    // Get all products.
+    @GetMapping("/products")
+    public List<ProductDto> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
 
     // Get a product by ID.
     @GetMapping("/product/{id}")
