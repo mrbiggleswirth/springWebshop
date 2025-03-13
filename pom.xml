@@ -32,7 +32,7 @@
 
 	<!-- Start Dependencies -->
 	<dependencies>
-		<!-- ChatGPT says that "spring-boot-starter-web" already brings the necessary components. -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -69,15 +69,20 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
-		<!-- JUnit 5 API -->
+		<!-- MapStruct API -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.3.Final</version>
+		</dependency>
 
-		<!-- JUnit 5 Engine -->
-
-		<!-- ChatGPT said this might be needed to ensure compatibility! -->
-
-		<!-- Mockito Core -->
-
-		<!-- Mockito JUnit 5 Integration -->
+		<!-- MapStruct Processor (Required for annotation processing) -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.5.3.Final</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 	<!-- End Dependencies -->

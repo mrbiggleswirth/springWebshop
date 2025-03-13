@@ -160,11 +160,11 @@ public class Product {
     }
 
     // 8
-    public Boolean isAvailable() {
+    public Boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(Boolean available) {
+    public void setIsAvailable(Boolean available) {
         isAvailable = available;
     }
 

@@ -38,7 +38,7 @@ public class ProductDto {
 
         this.productImageUrl = product.getImageUrl();
         this.productStockQuantity = product.getStockQuantity();
-        this.productIsAvailable = product.isAvailable();
+        this.productIsAvailable = product.getIsAvailable();
     }
 
 // _____________________________________________________________________________
@@ -108,11 +108,11 @@ public class ProductDto {
     }
 
     // 8
-    public boolean isProductAvailable() {
+    public Boolean getProductIsAvailable() {
         return productIsAvailable;
     }
 
-    public void setProductAvailable(boolean productIsAvailable) {
+    public void setProductIsAvailable(Boolean productIsAvailable) {
         this.productIsAvailable = productIsAvailable;
     }
 }
