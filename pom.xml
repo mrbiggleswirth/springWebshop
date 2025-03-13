@@ -32,13 +32,11 @@
 
 	<!-- Start Dependencies -->
 	<dependencies>
-		<!--
-		ChatGPT says that "spring-boot-starter-web" already brings the necessary components.
+		<!-- ChatGPT says that "spring-boot-starter-web" already brings the necessary components. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,44 +70,14 @@
 		</dependency>
 
 		<!-- JUnit 5 API -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.12.0</version>
-			<scope>test</scope>
-		</dependency>
 
 		<!-- JUnit 5 Engine -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.12.0</version>
-		</dependency>
 
 		<!-- ChatGPT said this might be needed to ensure compatibility! -->
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<!-- or the version you're using -->
-			<version>1.7.0</version>
-			<scope>test</scope>
-		</dependency>
 
 		<!-- Mockito Core -->
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>5.6.0</version>
-			<scope>test</scope>
-		</dependency>
 
 		<!-- Mockito JUnit 5 Integration -->
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-junit-jupiter</artifactId>
-			<version>5.6.0</version>
-			<scope>test</scope>
-		</dependency>
 
 	</dependencies>
 	<!-- End Dependencies -->

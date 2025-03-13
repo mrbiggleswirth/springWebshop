@@ -47,9 +47,11 @@ public class ProductService {
     }
 
     // For testing only?
+    /*
     public Optional<Product> findProductByName(String name) {
         return productRepository.findByName(name);
     }
+     */
 
 
     /*
