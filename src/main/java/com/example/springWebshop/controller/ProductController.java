@@ -2,6 +2,7 @@ package com.example.springWebshop.controller;
 
 import java.util.List;
 
+import com.example.springWebshop.mapper.ProductMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public class ProductController {
     }
 
 // _____________________________________________________________________________
+// Example of transitioning to DTO.
 
     /*
     // Get all products.
@@ -34,9 +36,16 @@ public class ProductController {
     }
      */
 
-    /**
-     * TODO: Complete building the getAllProducts() method using DTO code.
-     */
+    /*
+    // Get all products.
+    @GetMapping("/products")
+    public List<ProductDto> getAllProducts() {
+        List<Product> products = productService.getAllProducts();
+        return products.stream()
+            .map(ProductMapper.INSTANCE::productToProductDto)
+            .toList();
+    }
+    */
 
     // Get all products.
     @GetMapping("/products")
@@ -44,6 +53,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+// _____________________________________________________________________________
 
     // Get a product by ID.
     @GetMapping("/product/{id}")

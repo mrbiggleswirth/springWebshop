@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.springWebshop.dto.ProductDto;
+import com.example.springWebshop.mapper.ProductMapper;
 import com.example.springWebshop.model.Product;
 import com.example.springWebshop.repository.ProductRepository;
 
@@ -22,10 +24,22 @@ public class ProductService {
     }
 
 // _____________________________________________________________________________
+// Example of transitioning to DTO.
 
+    /*
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+     */
+
+    public List<ProductDto> getAllProducts() {
+        List<Product> products = productRepository.findAll(); // Fetches Product entities.
+        return products.stream()
+            .map(ProductMapper.INSTANCE::productToProductDto) // Converts Product to ProductDto.
+            .toList();
+    }
+
+// _____________________________________________________________________________
 
     public Product getProductById(Long id) {
         /**
@@ -39,7 +53,7 @@ public class ProductService {
     }
 
 // _____________________________________________________________________________
-// Search
+// Searches
 
     public List<Product> getProductsByNameIgnoreCaseStartingWith(String name) {
         System.out.println("Searching for products with name: " + name);

@@ -18,6 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      *   - findAll()
      */
 
+// _____________________________________________________________________________
 
     /**
      * Find products by name starting with the given string.
@@ -26,6 +27,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // List<Product> findByNameIgnoreCase(String name);
     // List<Product> findByNameIgnoreCaseContaining(String name);
     List<Product> findByNameIgnoreCaseStartingWith(String name);
+
+// _____________________________________________________________________________
 
     /**
      * This generic naming might be causing server errors!
