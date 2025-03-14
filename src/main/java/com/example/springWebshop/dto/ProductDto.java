@@ -19,13 +19,15 @@ public class ProductDto {
 // _____________________________________________________________________________
 
     /**
-     * No-arg constructor
+     *  --- Constructor overloading ---
+     *  Allows a class to have multiple constructors with the same name
+     *  but different parameters.
      */
+
+    // --- No-arg constructor ---
     public ProductDto() {}
 
-    /**
-     * Constructor that converts Product to ProductDto.
-     */
+    // --- Constructor that converts a Product to ProductDto ---
     public ProductDto(Product product) {
         this.productId = product.getId();
         this.productName = product.getName();
@@ -39,6 +41,27 @@ public class ProductDto {
         this.productImageUrl = product.getImageUrl();
         this.productStockQuantity = product.getStockQuantity();
         this.productIsAvailable = product.getIsAvailable();
+    }
+
+    // --- Constructor for direct instantiation of ProductDto ---
+    public ProductDto(
+        Long productId,
+        String productName,
+        String productDescription,
+        BigDecimal productPrice,
+        String productCategory,
+        String productImageUrl,
+        Integer productStockQuantity,
+        Boolean productIsAvailable
+    ) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.productImageUrl = productImageUrl;
+        this.productStockQuantity = productStockQuantity;
+        this.productIsAvailable = productIsAvailable;
     }
 
 // _____________________________________________________________________________
