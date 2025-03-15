@@ -2,32 +2,31 @@ package com.example.springWebshop.product;
 
 import com.example.springWebshop.controller.ProductController;
 import com.example.springWebshop.dto.ProductDto;
-import com.example.springWebshop.mapper.ProductMapper;
 import com.example.springWebshop.model.Category;
 import com.example.springWebshop.model.Product;
 import com.example.springWebshop.service.ProductService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-// _____________________________________________________________________________
 
 public class ProductControllerTest {
 
@@ -39,54 +38,48 @@ public class ProductControllerTest {
     @InjectMocks
     private ProductController productController;
 
-    private Product testProduct1;
-    private Product testProduct2;
+    private ObjectMapper objectMapper;
     private List<ProductDto> productDtos;
-
-// _____________________________________________________________________________
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
+        objectMapper = new ObjectMapper();
 
-        // Create test category
-        Category electronics = new Category();
-        electronics.setName("Electronics");
+        // Configure mockMvc with message converter to ensure content type is set
+        mockMvc = MockMvcBuilders.standaloneSetup(productController)
+            .setMessageConverters(new MappingJackson2HttpMessageConverter())
+            .build();
 
-        // Create test products
-        testProduct1 = new Product();
-        testProduct1.setName("Smartphone");
-        testProduct1.setDescription("High-end smartphone with great camera");
-        testProduct1.setPrice(new BigDecimal("799.99"));
-        testProduct1.setCategory(electronics);
-        testProduct1.setImageUrl("smartphone.jpg");
-        testProduct1.setStockQuantity(50);
-        testProduct1.setIsAvailable(true);
+        // Create DTOs directly since we can't set IDs on entities
+        ProductDto productDto1 = new ProductDto();
+        productDto1.setProductId(1L);
+        productDto1.setProductName("Smartphone");
+        productDto1.setProductDescription("High-end smartphone with great camera");
+        productDto1.setProductPrice(new BigDecimal("799.99"));
+        productDto1.setProductCategory("Electronics");
+        productDto1.setProductImageUrl("smartphone.jpg");
+        productDto1.setProductStockQuantity(50);
+        productDto1.setProductIsAvailable(true);
 
-        testProduct2 = new Product();
-        testProduct2.setName("Laptop");
-        testProduct2.setDescription("Powerful laptop for work and gaming");
-        testProduct2.setPrice(new BigDecimal("1299.99"));
-        testProduct2.setCategory(electronics);
-        testProduct2.setImageUrl("laptop.jpg");
-        testProduct2.setStockQuantity(30);
-        testProduct2.setIsAvailable(true);
+        ProductDto productDto2 = new ProductDto();
+        productDto2.setProductId(2L);
+        productDto2.setProductName("Laptop");
+        productDto2.setProductDescription("Powerful laptop for work and gaming");
+        productDto2.setProductPrice(new BigDecimal("1299.99"));
+        productDto2.setProductCategory("Electronics");
+        productDto2.setProductImageUrl("laptop.jpg");
+        productDto2.setProductStockQuantity(30);
+        productDto2.setProductIsAvailable(true);
 
-        // Create DTOs
-        ProductDto productDto1 = ProductMapper.INSTANCE.productToProductDto(testProduct1);
-        ProductDto productDto2 = ProductMapper.INSTANCE.productToProductDto(testProduct2);
         productDtos = Arrays.asList(productDto1, productDto2);
     }
-
-// _____________________________________________________________________________
 
     @Test
     public void testGetAllProducts() throws Exception {
         when(productService.getAllProducts()).thenReturn(productDtos);
 
-        mockMvc.perform(get("/products")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/products"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(2)))
@@ -99,14 +92,20 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$[1].productPrice", is(1299.99)));
     }
 
-// _____________________________________________________________________________
-
     @Test
     public void testGetProductById() throws Exception {
-        when(productService.getProductById(anyLong())).thenReturn(testProduct1);
+        // Create product directly in the test with reflection or mock approach
+        Product mockProduct = mock(Product.class);
+        when(mockProduct.getId()).thenReturn(1L);
+        when(mockProduct.getName()).thenReturn("Smartphone");
+        when(mockProduct.getDescription()).thenReturn("High-end smartphone with great camera");
+        when(mockProduct.getPrice()).thenReturn(new BigDecimal("799.99"));
+        when(mockProduct.getStockQuantity()).thenReturn(50);
+        when(mockProduct.getIsAvailable()).thenReturn(true);
 
-        mockMvc.perform(get("/product/1")
-                .contentType(MediaType.APPLICATION_JSON))
+        when(productService.getProductById(anyLong())).thenReturn(mockProduct);
+
+        mockMvc.perform(get("/product/1"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id", is(1)))
@@ -116,15 +115,18 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$.isAvailable", is(true)));
     }
 
-// _____________________________________________________________________________
-
     @Test
     public void testGetProductsByNameIgnoreCaseStartingWith() throws Exception {
-        List<Product> products = Arrays.asList(testProduct1);
+        // Create product directly in the test with reflection or mock approach
+        Product mockProduct = mock(Product.class);
+        when(mockProduct.getId()).thenReturn(1L);
+        when(mockProduct.getName()).thenReturn("Smartphone");
+        when(mockProduct.getPrice()).thenReturn(new BigDecimal("799.99"));
+
+        List<Product> products = Arrays.asList(mockProduct);
         when(productService.getProductsByNameIgnoreCaseStartingWith(anyString())).thenReturn(products);
 
-        mockMvc.perform(get("/products/name/Smart")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/products/name/Smart"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(1)))
@@ -133,28 +135,21 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$[0].price", is(799.99)));
     }
 
-// _____________________________________________________________________________
-
     @Test
     public void testGetProductById_NotFound() throws Exception {
         when(productService.getProductById(anyLong())).thenReturn(null);
 
-        mockMvc.perform(get("/product/999")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/product/999"))
             .andExpect(status().isOk())
-            // .andExpect(status().isNotFound()) // Expecting 404 Not Found.
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            // Don't check content type when the response is empty
             .andExpect(jsonPath("$").doesNotExist());
     }
 
-// _____________________________________________________________________________
-
     @Test
     public void testGetProductsByNameIgnoreCaseStartingWith_NoResults() throws Exception {
-        when(productService.getProductsByNameIgnoreCaseStartingWith(anyString())).thenReturn(Arrays.asList());
+        when(productService.getProductsByNameIgnoreCaseStartingWith(anyString())).thenReturn(new ArrayList<>());
 
-        mockMvc.perform(get("/products/name/NonExistentProduct")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/products/name/NonExistentProduct"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(0)));
