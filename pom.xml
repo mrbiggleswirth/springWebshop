@@ -32,7 +32,6 @@
 
 	<!-- Start Dependencies -->
 	<dependencies>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -83,17 +82,26 @@
 			<version>1.5.3.Final</version>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 	<!-- End Dependencies -->
 
 	<build>
+		<!-- Start Plugins -->
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
-	</build>
 
+			<!-- Future-proofing project by adding Mockito as a Java agent to build config. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+		<!-- End Plugins -->
+	</build>
 </project>

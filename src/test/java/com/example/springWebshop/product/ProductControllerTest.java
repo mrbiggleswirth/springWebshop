@@ -28,6 +28,8 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+// _____________________________________________________________________________
+
 public class ProductControllerTest {
 
     private MockMvc mockMvc;
@@ -75,6 +77,8 @@ public class ProductControllerTest {
         productDtos = Arrays.asList(productDto1, productDto2);
     }
 
+// _____________________________________________________________________________
+// 1
     @Test
     public void testGetAllProducts() throws Exception {
         when(productService.getAllProducts()).thenReturn(productDtos);
@@ -92,6 +96,8 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$[1].productPrice", is(1299.99)));
     }
 
+// _____________________________________________________________________________
+// 2
     @Test
     public void testGetProductById() throws Exception {
         // Create product directly in the test with reflection or mock approach
@@ -115,6 +121,8 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$.isAvailable", is(true)));
     }
 
+// _____________________________________________________________________________
+// 3
     @Test
     public void testGetProductsByNameIgnoreCaseStartingWith() throws Exception {
         // Create product directly in the test with reflection or mock approach
@@ -135,6 +143,8 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$[0].price", is(799.99)));
     }
 
+// _____________________________________________________________________________
+// 4
     @Test
     public void testGetProductById_NotFound() throws Exception {
         when(productService.getProductById(anyLong())).thenReturn(null);
@@ -145,6 +155,8 @@ public class ProductControllerTest {
             .andExpect(jsonPath("$").doesNotExist());
     }
 
+// _____________________________________________________________________________
+// 5
     @Test
     public void testGetProductsByNameIgnoreCaseStartingWith_NoResults() throws Exception {
         when(productService.getProductsByNameIgnoreCaseStartingWith(anyString())).thenReturn(new ArrayList<>());
