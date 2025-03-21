@@ -79,6 +79,7 @@ public class ProductControllerTest {
 
 // _____________________________________________________________________________
 // 1
+
     @Test
     public void testGetAllProducts() throws Exception {
         when(productService.getAllProducts()).thenReturn(productDtos);
@@ -98,6 +99,7 @@ public class ProductControllerTest {
 
 // _____________________________________________________________________________
 // 2
+
     @Test
     public void testGetProductById() throws Exception {
         // Create product directly in the test with reflection or mock approach
@@ -123,6 +125,7 @@ public class ProductControllerTest {
 
 // _____________________________________________________________________________
 // 3
+
     @Test
     public void testGetProductsByNameIgnoreCaseStartingWith() throws Exception {
         // Create product directly in the test with reflection or mock approach
@@ -145,6 +148,7 @@ public class ProductControllerTest {
 
 // _____________________________________________________________________________
 // 4
+
     @Test
     public void testGetProductById_NotFound() throws Exception {
         when(productService.getProductById(anyLong())).thenReturn(null);
@@ -157,6 +161,7 @@ public class ProductControllerTest {
 
 // _____________________________________________________________________________
 // 5
+
     @Test
     public void testGetProductsByNameIgnoreCaseStartingWith_NoResults() throws Exception {
         when(productService.getProductsByNameIgnoreCaseStartingWith(anyString())).thenReturn(new ArrayList<>());
