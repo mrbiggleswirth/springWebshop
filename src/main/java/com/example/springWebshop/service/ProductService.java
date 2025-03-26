@@ -44,9 +44,11 @@ public class ProductService {
 
     // Get all products as DTOs.
     public List<ProductDto> getAllProducts() {
-        List<Product> products = productRepository.findAll(); // Fetches Product entities.
+        // Fetches Product entities.
+        List<Product> products = productRepository.findAll();
         return products.stream()
-            .map(ProductMapper.INSTANCE::productToProductDto) // Converts Product to ProductDto.
+            // Converts Product entities to ProductDto objects.
+            .map(ProductMapper.INSTANCE::productToProductDto)
             .toList();
     }
 
