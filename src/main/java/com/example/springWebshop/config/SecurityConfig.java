@@ -30,10 +30,25 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                // Authentication endpoints.
                 .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/products").permitAll() // Allow public access to products listing.
-                .requestMatchers("/product/{id}").permitAll() // Optional: Allow access to product details.
-                .requestMatchers("/products/name/{name}").permitAll() // Allow public access to product search by name.
+
+                // Public product endpoints.
+                .requestMatchers("/api/products").permitAll()
+                .requestMatchers("/api/products/{id}").permitAll()
+                .requestMatchers("/api/products/search").permitAll()
+                .requestMatchers("/api/products/category/{categoryId}").permitAll()
+                .requestMatchers("/api/products/price").permitAll()
+
+                // For backward compatibility with older endpoints.
+                .requestMatchers("/products").permitAll()
+                .requestMatchers("/product/{id}").permitAll()
+                .requestMatchers("/products/name/{name}").permitAll()
+
+                // Admin endpoints - require authentication.
+                .requestMatchers("/api/admin/**").authenticated()
+
+                // Any other request requires authentication.
                 .anyRequest().authenticated())
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

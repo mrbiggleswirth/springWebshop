@@ -1,13 +1,14 @@
 package com.example.springWebshop.controller;
 
+import jakarta.validation.Valid;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import com.example.springWebshop.dto.ProductDto;
 import com.example.springWebshop.model.Product;
 import com.example.springWebshop.service.ProductService;
-
-import javax.validation.Valid;
-import java.util.List;
 
 // _____________________________________________________________________________
 
