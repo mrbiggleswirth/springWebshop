@@ -35,19 +35,8 @@ public class ProductController {
     }
     */
 
-    /*
     // Get all products.
-    @GetMapping("/products")
-    public List<ProductDto> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        return products.stream()
-            .map(ProductMapper.INSTANCE::productToProductDto)
-            .toList();
-    }
-    */
-
-    // Get all products.
-    @GetMapping("/products")
+    @GetMapping
     public List<ProductDto> getAllProducts() {
         return productService.getAllProducts();
     }
@@ -55,14 +44,14 @@ public class ProductController {
 // _____________________________________________________________________________
 
     /*
-    // Get a product by ID.
+    // Get product by ID.
     @GetMapping("/product/{id}")
     public Product getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
     */
 
-    // Get a product by ID, enhanced safer DTO version.
+    // Get product by ID, enhanced safer DTO version.
     @GetMapping("/{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
         ProductDto product = productService.getProductDtoById(id);
@@ -73,11 +62,20 @@ public class ProductController {
     }
 
 // _____________________________________________________________________________
+// Search product name
 
+    /*
     // Get a products by name.
     @GetMapping("/products/name/{name}")
     public List<Product> getProductsByNameIgnoreCaseStartingWith(@PathVariable String name) {
         return productService.getProductsByNameIgnoreCaseStartingWith(name);
+    }
+    */
+
+    // Search products by name.
+    @GetMapping("/search")
+    public List<ProductDto> searchProducts(@RequestParam String query) {
+        return productService.searchProductsByName(query);
     }
 
     /**
@@ -99,4 +97,21 @@ public class ProductController {
     }
     */
 
+// _____________________________________________________________________________
+
+    // Filter products by category.
+    @GetMapping("/category/{categoryId}")
+    public List<ProductDto> getProductsByCategory(@PathVariable Long categoryId) {
+        return productService.getProductsByCategory(categoryId);
+    }
+
+// _____________________________________________________________________________
+
+    // Filter products by price range.
+    @GetMapping("/price")
+    public List<ProductDto> getProductsByPriceRange(
+        @RequestParam(required = false) Double min,
+        @RequestParam(required = false) Double max) {
+        return productService.getProductsByPriceRange(min, max);
+    }
 }
