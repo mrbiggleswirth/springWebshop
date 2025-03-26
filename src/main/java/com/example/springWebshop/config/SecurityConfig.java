@@ -31,6 +31,9 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/products").permitAll() // Allow public access to products listing.
+                .requestMatchers("/product/{id}").permitAll() // Optional: Allow access to product details.
+                .requestMatchers("/products/name/{name}").permitAll() // Allow public access to product search by name.
                 .anyRequest().authenticated())
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
