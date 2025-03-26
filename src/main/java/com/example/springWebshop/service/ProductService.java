@@ -40,6 +40,7 @@ public class ProductService {
     }
 
 // _____________________________________________________________________________
+// Product ID
 
     public Product getProductById(Long id) {
         /**
@@ -47,6 +48,10 @@ public class ProductService {
          */
         return productRepository.findById(id).orElse(null);
     }
+
+
+
+// _____________________________________________________________________________
 
     public Product saveProduct(Product product) {
         return productRepository.save(product);

@@ -3,10 +3,8 @@ package com.example.springWebshop.controller;
 import java.util.List;
 
 import com.example.springWebshop.mapper.ProductMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.springWebshop.dto.ProductDto;
 import com.example.springWebshop.model.Product;
@@ -15,6 +13,7 @@ import com.example.springWebshop.service.ProductService;
 // _____________________________________________________________________________
 
 @RestController
+@RequestMapping("/api/products")
 public class ProductController {
     /**
      * Constructor injection is preferred over @Autowired on fields.
@@ -34,7 +33,7 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
-     */
+    */
 
     /*
     // Get all products.
@@ -55,11 +54,25 @@ public class ProductController {
 
 // _____________________________________________________________________________
 
+    /*
     // Get a product by ID.
     @GetMapping("/product/{id}")
     public Product getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
+    */
+
+    // Get a product by ID, enhanced safer DTO version.
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+        ProductDto product = productService.getProductDtoById(id);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+// _____________________________________________________________________________
 
     // Get a products by name.
     @GetMapping("/products/name/{name}")
