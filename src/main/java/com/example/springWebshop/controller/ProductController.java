@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.springWebshop.dto.ProductDto;
-import com.example.springWebshop.model.Product;
+// import com.example.springWebshop.model.Product;
 import com.example.springWebshop.service.ProductService;
 
 // _____________________________________________________________________________
@@ -25,15 +25,6 @@ public class ProductController {
     }
 
 // _____________________________________________________________________________
-// Example of transitioning to DTO.
-
-    /*
-    // Get all products.
-    @GetMapping("/products")
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
-    }
-    */
 
     // Get all products.
     @GetMapping
@@ -42,14 +33,6 @@ public class ProductController {
     }
 
 // _____________________________________________________________________________
-
-    /*
-    // Get product by ID.
-    @GetMapping("/product/{id}")
-    public Product getProductById(@PathVariable Long id) {
-        return productService.getProductById(id);
-    }
-    */
 
     // Get product by ID, enhanced safer DTO version.
     @GetMapping("/{id}")
@@ -62,15 +45,6 @@ public class ProductController {
     }
 
 // _____________________________________________________________________________
-// Search product name
-
-    /*
-    // Get a products by name.
-    @GetMapping("/products/name/{name}")
-    public List<Product> getProductsByNameIgnoreCaseStartingWith(@PathVariable String name) {
-        return productService.getProductsByNameIgnoreCaseStartingWith(name);
-    }
-    */
 
     // Search products by name.
     @GetMapping("/search")
@@ -81,21 +55,6 @@ public class ProductController {
     /**
      * TODO: Optional manufacturer, not yet implemented.
      */
-
-    /*
-    // Get a products by name.
-    @GetMapping("/products/name")
-    public List<Product> getProductsByNameAndFilters(
-        @RequestParam String name,
-        @RequestParam(required = false) String manufacturer
-    ) {
-        // return productService.getProductsByNameIgnoreCaseStartingWith(name);
-        return productService.getProductsByNameAndFilters(
-            name,
-            manufacturer
-        );
-    }
-    */
 
 // _____________________________________________________________________________
 

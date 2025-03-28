@@ -1,4 +1,4 @@
-package com.example.springWebshop.product;
+package com.example.springWebshop.archived.test.product;
 
 import com.example.springWebshop.controller.ProductController;
 import com.example.springWebshop.dto.ProductDto;

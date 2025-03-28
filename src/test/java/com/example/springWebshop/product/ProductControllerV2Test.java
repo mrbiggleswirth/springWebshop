@@ -25,6 +25,8 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+// _____________________________________________________________________________
+
 public class ProductControllerV2Test {
 
     private MockMvc mockMvc;
@@ -74,6 +76,9 @@ public class ProductControllerV2Test {
         sampleProductDto = productDto1;  // Save one for individual tests
     }
 
+// _____________________________________________________________________________
+// 1
+
     @Test
     public void testGetAllProducts() throws Exception {
         when(productService.getAllProducts()).thenReturn(productDtos);
@@ -91,6 +96,9 @@ public class ProductControllerV2Test {
             .andExpect(jsonPath("$[1].productPrice", is(1299.99)));
     }
 
+// _____________________________________________________________________________
+// 2
+
     @Test
     public void testGetProductById() throws Exception {
         when(productService.getProductDtoById(1L)).thenReturn(sampleProductDto);
@@ -103,6 +111,9 @@ public class ProductControllerV2Test {
             .andExpect(jsonPath("$.productPrice", is(799.99)));
     }
 
+// _____________________________________________________________________________
+// 3
+
     @Test
     public void testGetProductById_NotFound() throws Exception {
         when(productService.getProductDtoById(anyLong())).thenReturn(null);
@@ -110,6 +121,9 @@ public class ProductControllerV2Test {
         mockMvc.perform(get("/api/products/999"))
             .andExpect(status().isNotFound());
     }
+
+// _____________________________________________________________________________
+// 4
 
     @Test
     public void testSearchProducts() throws Exception {
@@ -124,6 +138,9 @@ public class ProductControllerV2Test {
             .andExpect(jsonPath("$[0].productName", is("Smartphone")));
     }
 
+// _____________________________________________________________________________
+// 5
+
     @Test
     public void testSearchProducts_NoResults() throws Exception {
         when(productService.searchProductsByName(anyString())).thenReturn(new ArrayList<>());
@@ -133,6 +150,9 @@ public class ProductControllerV2Test {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(0)));
     }
+
+// _____________________________________________________________________________
+// 6
 
     @Test
     public void testGetProductsByCategory() throws Exception {
@@ -146,6 +166,9 @@ public class ProductControllerV2Test {
             .andExpect(jsonPath("$[1].productId", is(2)));
     }
 
+// _____________________________________________________________________________
+// 7
+
     @Test
     public void testGetProductsByCategory_EmptyCategory() throws Exception {
         when(productService.getProductsByCategory(anyLong())).thenReturn(new ArrayList<>());
@@ -155,6 +178,9 @@ public class ProductControllerV2Test {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$", hasSize(0)));
     }
+
+// _____________________________________________________________________________
+// 8
 
     @Test
     public void testGetProductsByPriceRange() throws Exception {
@@ -171,6 +197,9 @@ public class ProductControllerV2Test {
             .andExpect(jsonPath("$[0].productPrice", is(799.99)));
     }
 
+// _____________________________________________________________________________
+// 9
+
     @Test
     public void testGetProductsByPriceRange_MinOnly() throws Exception {
         when(productService.getProductsByPriceRange(eq(1000.0), isNull())).thenReturn(
@@ -185,6 +214,9 @@ public class ProductControllerV2Test {
             .andExpect(jsonPath("$[0].productId", is(2)));
     }
 
+// _____________________________________________________________________________
+// 10
+
     @Test
     public void testGetProductsByPriceRange_MaxOnly() throws Exception {
         when(productService.getProductsByPriceRange(isNull(), eq(1000.0))).thenReturn(
@@ -198,6 +230,9 @@ public class ProductControllerV2Test {
             .andExpect(jsonPath("$", hasSize(1)))
             .andExpect(jsonPath("$[0].productId", is(1)));
     }
+
+// _____________________________________________________________________________
+// 11
 
     @Test
     public void testGetProductsByPriceRange_NoParams() throws Exception {

@@ -17,25 +17,6 @@ import com.example.springWebshop.repository.ProductRepository;
 
 // _____________________________________________________________________________
 
-/**
- * ProductService provides business logic for product-related operations.
- *
- * Implementation note:
- * This service originally returned entities directly:
- *
- * public List<Product> getProductsByNameIgnoreCaseStartingWith(String name) {
- *     return productRepository.findByNameIgnoreCaseStartingWith(name);
- * }
- *
- *
- * Now it uses DTOs for better API design:
- *
- * public List<ProductDto> searchProductsByName(String query) {
- *     List<Product> products = productRepository.findByNameIgnoreCaseStartingWith(query);
- *     return products.stream().map(ProductMapper.INSTANCE::productToProductDto).collect(Collectors.toList());
- * }
- */
-
 @Service
 public class ProductService {
     /**
@@ -53,13 +34,6 @@ public class ProductService {
     }
 
 // _____________________________________________________________________________
-// Example of transitioning to DTO.
-
-    /*
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
-     */
 
     // Get all products as DTOs.
     public List<ProductDto> getAllProducts() {
@@ -92,7 +66,7 @@ public class ProductService {
     }
 
 // _____________________________________________________________________________
-// Searches 2
+// Searches
 
     // Search products by name.
     public List<ProductDto> searchProductsByName(String query) {
@@ -101,44 +75,6 @@ public class ProductService {
             .map(ProductMapper.INSTANCE::productToProductDto)
             .collect(Collectors.toList());
     }
-
-// _____________________________________________________________________________
-// Searches 1
-
-    /*
-    public List<Product> getProductsByNameIgnoreCaseStartingWith(String name) {
-        System.out.println("Searching for products with name: " + name);
-        return productRepository.findByNameIgnoreCaseStartingWith(name);
-    }
-    */
-
-    // For testing only?
-    /*
-    public Optional<Product> findProductByName(String name) {
-        return productRepository.findByName(name);
-    }
-     */
-
-
-    /*
-    public List<Product> getProductsByNameAndFilters(
-        String name,
-        String manufacturer
-    ) {
-        if (manufacturer != null) {
-            System.out.println("Searching for products with name: " + name
-                + " and manufacturer: " + manufacturer
-            );
-            return productRepository.findByNameStartingWithAndFilters(
-                name,
-                manufacturer
-            );
-        } else {
-            System.out.println("Searching for products with name: " + name);
-            return productRepository.findByNameIgnoreCaseStartingWith(name);
-        }
-    }
-    */
 
 // _____________________________________________________________________________
 
