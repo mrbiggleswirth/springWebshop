@@ -1,0 +1,46 @@
+package com.example.springWebshop.examples;
+
+import java.util.List;
+import org.springframework.stereotype.Service;
+import com.example.springWebshop.model.Product;
+import com.example.springWebshop.repository.ProductRepository;
+
+/**
+ * EXAMPLE FILE - NOT FOR PRODUCTION USE
+ *
+ * This example shows the entity-based approach to the ProductService
+ * before migrating to DTOs. This approach directly returns entity objects
+ * to controllers, which can lead to issues with circular references and
+ * exposes internal implementation details.
+ */
+@Service
+public class ProductServiceExample {
+
+    private final ProductRepository productRepository;
+
+    public ProductServiceExample(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    /**
+     * Example of entity-based approach: directly returning entities
+     */
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    /**
+     * Example of entity-based search implementation
+     */
+    public List<Product> getProductsByNameIgnoreCaseStartingWith(String name) {
+        System.out.println("Searching for products with name: " + name);
+        return productRepository.findByNameIgnoreCaseStartingWith(name);
+    }
+
+    /**
+     * Example of entity-based retrieve by ID method
+     */
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+}

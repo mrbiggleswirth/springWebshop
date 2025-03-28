@@ -17,6 +17,25 @@ import com.example.springWebshop.repository.ProductRepository;
 
 // _____________________________________________________________________________
 
+/**
+ * ProductService provides business logic for product-related operations.
+ *
+ * Implementation note:
+ * This service originally returned entities directly:
+ *
+ * public List<Product> getProductsByNameIgnoreCaseStartingWith(String name) {
+ *     return productRepository.findByNameIgnoreCaseStartingWith(name);
+ * }
+ *
+ *
+ * Now it uses DTOs for better API design:
+ *
+ * public List<ProductDto> searchProductsByName(String query) {
+ *     List<Product> products = productRepository.findByNameIgnoreCaseStartingWith(query);
+ *     return products.stream().map(ProductMapper.INSTANCE::productToProductDto).collect(Collectors.toList());
+ * }
+ */
+
 @Service
 public class ProductService {
     /**

@@ -1,0 +1,50 @@
+package com.example.springWebshop.examples;
+
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.springWebshop.model.Product;
+import com.example.springWebshop.service.ProductService;
+
+/**
+ * EXAMPLE FILE - NOT FOR PRODUCTION USE
+ *
+ * This example shows the entity-based approach to the ProductController
+ * before migrating to DTOs. This controller directly returns entity objects
+ * to API clients.
+ */
+@RestController
+public class ProductControllerExample {
+
+    private final ProductService productService;
+
+    public ProductControllerExample(ProductService productService) {
+        this.productService = productService;
+    }
+
+    /**
+     * Example of entity-based endpoint
+     */
+    @GetMapping("/products")
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
+    /**
+     * Example of entity-based endpoint for fetching by ID
+     */
+    @GetMapping("/product/{id}")
+    public Product getProductById(@PathVariable Long id) {
+        return productService.getProductById(id);
+    }
+
+    /**
+     * Example of entity-based endpoint for searching
+     */
+    @GetMapping("/products/name/{name}")
+    public List<Product> getProductsByNameIgnoreCaseStartingWith(@PathVariable String name) {
+        return productService.getProductsByNameIgnoreCaseStartingWith(name);
+    }
+}

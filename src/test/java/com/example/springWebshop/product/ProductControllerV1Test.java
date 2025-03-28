@@ -2,11 +2,11 @@ package com.example.springWebshop.product;
 
 import com.example.springWebshop.controller.ProductController;
 import com.example.springWebshop.dto.ProductDto;
-import com.example.springWebshop.model.Category;
 import com.example.springWebshop.model.Product;
 import com.example.springWebshop.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -30,7 +30,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 // _____________________________________________________________________________
 
-public class ProductControllerTest {
+/**
+ *
+ * With @Disabled all tests will be skipped.
+ *
+ */
+
+@Disabled("Archived test for legacy API - not maintained")
+public class ProductControllerV1Test {
 
     private MockMvc mockMvc;
 
