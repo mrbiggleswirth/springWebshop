@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Spring Webshop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .product-detail {
+        display: flex;
+        flex-wrap: wrap;
+        background: white;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-detail-image {
+        flex: 1;
+        min-width: 300px;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-detail-image img {
+        max-width: 100%;
+        max-height: 400px;
+        object-fit: contain;
+    }
+
+    .product-detail-info {
+        flex: 2;
+        min-width: 300px;
+        padding: 20px;
+    }
+
+    .product-detail-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .product-detail-category {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .product-detail-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #4CAF50;
+        margin-bottom: 20px;
+    }
+
+    .product-detail-description {
+        margin-bottom: 20px;
+        line-height: 1.8;
+    }
+
+    .product-detail-stock {
+        margin-bottom: 20px;
+    }
+
+    .back-btn {
+        margin-bottom: 20px;
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #f8f8f8;
+        color: #333;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .back-btn:hover {
+        background-color: #eaeaea;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Spring Webshop</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Products</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="admin/login.html">Admin</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <a href="index.html" class="back-btn">&larr; Back to Products</a>
+
+  <div id="product-detail-container">
+    <div class="loading">Loading product details...</div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Spring Webshop</p>
+  </div>
+</footer>
+
+<script src="js/product-detail.js"></script>
+</body>
+</html>

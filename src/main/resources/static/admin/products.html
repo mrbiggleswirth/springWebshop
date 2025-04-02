@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Products - Spring Webshop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Spring Webshop Admin</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Store Front</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <div class="admin-header">
+        <h2>Product Management</h2>
+        <button id="add-product-btn" class="btn-primary">Add New Product</button>
+    </div>
+
+    <div class="product-table-container">
+        <table id="products-table" class="product-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="products-table-body">
+            <!-- Products will be loaded dynamically -->
+            <tr>
+                <td colspan="8" class="loading">Loading products...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Product Form Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Product</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+
+                    <div class="form-group">
+                        <label for="product-name">Product Name*</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description">Description</label>
+                        <textarea id="product-description" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-price">Price*</label>
+                        <input type="number" id="product-price" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-category">Category</label>
+                        <input type="text" id="product-category">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image-url">Image URL</label>
+                        <input type="text" id="product-image-url">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-stock">Stock Quantity*</label>
+                        <input type="number" id="product-stock" min="0" required>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="product-available" checked>
+                        <label for="product-available">Available</label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content confirm-modal-content">
+            <div class="modal-header">
+                <h3>Confirm Delete</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this product? This action cannot be undone.</p>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+                    <button type="button" class="btn-danger" id="confirm-delete-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Spring Webshop</p>
+    </div>
+</footer>
+
+<script src="../js/admin/product-management.js"></script>
+</body>
+</html>

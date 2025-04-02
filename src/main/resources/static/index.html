@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Webshop</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>Spring Webshop</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Products</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="admin/login.html">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h2>All Products</h2>
+
+    <div class="filters">
+        <div class="price-filter">
+            <label for="min-price">Min Price:</label>
+            <input type="number" id="min-price" min="0">
+
+            <label for="max-price">Max Price:</label>
+            <input type="number" id="max-price" min="0">
+
+            <button id="filter-price-btn">Filter</button>
+        </div>
+
+        <div class="category-filter">
+            <label for="category">Category:</label>
+            <select id="category">
+                <option value="">All Categories</option>
+                <!-- Categories will be loaded dynamically -->
+            </select>
+        </div>
+    </div>
+
+    <div id="products-container" class="products-grid">
+        <!-- Products will be loaded dynamically -->
+        <div class="loading">Loading products...</div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Spring Webshop</p>
+    </div>
+</footer>
+
+<script src="js/products.js"></script>
+</body>
+</html>

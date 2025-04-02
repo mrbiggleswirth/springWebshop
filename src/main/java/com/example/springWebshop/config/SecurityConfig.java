@@ -30,10 +30,15 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Authentication endpoints.
+
+                // Static resources - allow everyone.
+                .requestMatchers("/", "/*.html", "/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/admin/*.html").permitAll()
+
+                // Authentication endpoints
                 .requestMatchers("/auth/**").permitAll()
 
-                // Public product endpoints.
+                // Public product endpoints
                 .requestMatchers("/api/products").permitAll()
                 .requestMatchers("/api/products/{id}").permitAll()
                 .requestMatchers("/api/products/search").permitAll()
